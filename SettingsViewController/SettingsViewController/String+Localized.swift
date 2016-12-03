@@ -12,6 +12,8 @@ fileprivate func NSLocalizedString(_ key: String) -> String {
     return NSLocalizedString(key, comment: "")
 }
 
+//swiftlint:disable variable_name
+//swiftlint:disable line_length
 extension String {
     static let Settings = NSLocalizedString("Settings")
     static let SetOption1 = NSLocalizedString("Set Option 1")
@@ -26,5 +28,7 @@ extension String {
     static let LogoutPrompt = NSLocalizedString("Would you like to logout from the application?")
     static let LogoutAndResetDataPrompt = NSLocalizedString("Would you like to reset data and logout?")
     static let LogoutAndRemoveAccountPrompt = NSLocalizedString("Would you like to remove your account and logout?")
-    
+
 }
+//swiftlint:enable variable_name
+//swiftlint:enable line_length

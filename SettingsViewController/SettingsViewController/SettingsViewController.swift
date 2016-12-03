@@ -12,7 +12,7 @@ class SettingsViewController: UIViewController {
 
     fileprivate let tableView = UITableView(frame: .zero, style: .grouped)
     fileprivate let cellIdentifier = String(describing: UITableViewCell.self)
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -21,7 +21,7 @@ class SettingsViewController: UIViewController {
         setupConstraints()
         tableView.reloadData()
     }
-    
+
     private func setupTableView() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         tableView.tableFooterView = UIView()
@@ -29,7 +29,7 @@ class SettingsViewController: UIViewController {
         tableView.delegate = self
         view.addSubview(tableView)
     }
-    
+
     private func setupConstraints() {
         view.subviews.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -43,7 +43,7 @@ extension SettingsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 5
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0...3:
@@ -54,7 +54,7 @@ extension SettingsViewController: UITableViewDataSource {
             fatalError("Wrong number of sections")
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         let section = indexPath.section
@@ -83,7 +83,7 @@ extension SettingsViewController: UITableViewDataSource {
         }
         return cell
     }
-    
+
 }
 
 extension SettingsViewController: UITableViewDelegate {
@@ -113,22 +113,32 @@ extension SettingsViewController: UITableViewDelegate {
 }
 
 extension SettingsViewController {
-    
+
     fileprivate func showLogoutPrompt() {
-        showAlert(with: .Logout, message: .LogoutPrompt, desctructiveAction: UIAlertAction(title: .OK, style: .destructive, handler: nil))
+        showAlert(with: .Logout,
+                  message: .LogoutPrompt,
+                  desctructiveAction:
+            UIAlertAction(title: .OK, style: .destructive, handler: nil))
     }
-    
+
     fileprivate func showLogoutAndResetDataPrompt() {
-        showAlert(with: .LogoutAndResetData, message: .LogoutAndResetDataPrompt, desctructiveAction: UIAlertAction(title: .OK, style: .destructive, handler: nil))
+        showAlert(with: .LogoutAndResetData,
+                  message: .LogoutAndResetDataPrompt,
+                  desctructiveAction:
+            UIAlertAction(title: .OK, style: .destructive, handler: nil))
     }
-    
+
     fileprivate func showLogoutAndRemoveAccountPrompt() {
-        showAlert(with: .LogoutAndRemoveAccount, message: .LogoutAndRemoveAccountPrompt, desctructiveAction: UIAlertAction(title: .OK, style: .destructive, handler: nil))
+        showAlert(with: .LogoutAndRemoveAccount,
+                  message: .LogoutAndRemoveAccountPrompt,
+                  desctructiveAction:
+            UIAlertAction(title: .OK, style: .destructive, handler: nil))
     }
-    
+
     fileprivate func showAlert(with title: String,
                                message: String,
-                               nonDestructiveAction: UIAlertAction = UIAlertAction(title: .Cancel, style: .cancel, handler: nil),
+                               nonDestructiveAction: UIAlertAction =
+                                UIAlertAction(title: .Cancel, style: .cancel, handler: nil),
                                desctructiveAction: UIAlertAction) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(nonDestructiveAction)

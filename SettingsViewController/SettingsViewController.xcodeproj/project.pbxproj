@@ -15,6 +15,7 @@
 		695F91171DF3557800885440 /* NSLayoutConstraint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695F91151DF3557800885440 /* NSLayoutConstraint+Extension.swift */; };
 		695F91181DF3557800885440 /* NSLayoutFormatOptions+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695F91161DF3557800885440 /* NSLayoutFormatOptions+Extension.swift */; };
 		695F911A1DF35C9300885440 /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695F91191DF35C9300885440 /* ViewControllers.swift */; };
+		695F911D1DF3645200885440 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 695F911C1DF3645200885440 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		695F91151DF3557800885440 /* NSLayoutConstraint+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Extension.swift"; sourceTree = "<group>"; };
 		695F91161DF3557800885440 /* NSLayoutFormatOptions+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLayoutFormatOptions+Extension.swift"; sourceTree = "<group>"; };
 		695F91191DF35C9300885440 /* ViewControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
+		695F911C1DF3645200885440 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				695F91081DF352EB00885440 /* Assets.xcassets */,
 				695F910A1DF352EB00885440 /* LaunchScreen.storyboard */,
 				695F910D1DF352EB00885440 /* Info.plist */,
+				695F911C1DF3645200885440 /* .swiftlint.yml */,
 			);
 			path = SettingsViewController;
 			sourceTree = "<group>";
@@ -80,6 +83,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 695F91101DF352EB00885440 /* Build configuration list for PBXNativeTarget "SettingsViewController" */;
 			buildPhases = (
+				695F911B1DF362B500885440 /* swiftlint */,
 				695F90FA1DF352EB00885440 /* Sources */,
 				695F90FB1DF352EB00885440 /* Frameworks */,
 				695F90FC1DF352EB00885440 /* Resources */,
@@ -132,12 +136,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				695F911D1DF3645200885440 /* .swiftlint.yml in Resources */,
 				695F910C1DF352EB00885440 /* LaunchScreen.storyboard in Resources */,
 				695F91091DF352EB00885440 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		695F911B1DF362B500885440 /* swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\nif which swiftlint >/dev/null; then\nswiftlint autocorrect\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		695F90FA1DF352EB00885440 /* Sources */ = {
