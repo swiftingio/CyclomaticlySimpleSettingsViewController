@@ -16,6 +16,7 @@
 		695F91181DF3557800885440 /* NSLayoutFormatOptions+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695F91161DF3557800885440 /* NSLayoutFormatOptions+Extension.swift */; };
 		695F911A1DF35C9300885440 /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695F91191DF35C9300885440 /* ViewControllers.swift */; };
 		695F911D1DF3645200885440 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 695F911C1DF3645200885440 /* .swiftlint.yml */; };
+		695F911F1DF3782700885440 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695F911E1DF3782700885440 /* Array+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		695F91161DF3557800885440 /* NSLayoutFormatOptions+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLayoutFormatOptions+Extension.swift"; sourceTree = "<group>"; };
 		695F91191DF35C9300885440 /* ViewControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
 		695F911C1DF3645200885440 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
+		695F911E1DF3782700885440 /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		695F91001DF352EB00885440 /* SettingsViewController */ = {
 			isa = PBXGroup;
 			children = (
+				695F911E1DF3782700885440 /* Array+Extension.swift */,
 				695F91011DF352EB00885440 /* AppDelegate.swift */,
 				695F91031DF352EB00885440 /* SettingsViewController.swift */,
 				695F91191DF35C9300885440 /* ViewControllers.swift */,
@@ -170,6 +173,7 @@
 				695F91171DF3557800885440 /* NSLayoutConstraint+Extension.swift in Sources */,
 				695F911A1DF35C9300885440 /* ViewControllers.swift in Sources */,
 				695F91041DF352EB00885440 /* SettingsViewController.swift in Sources */,
+				695F911F1DF3782700885440 /* Array+Extension.swift in Sources */,
 				695F91181DF3557800885440 /* NSLayoutFormatOptions+Extension.swift in Sources */,
 				695F91021DF352EB00885440 /* AppDelegate.swift in Sources */,
 			);
@@ -323,6 +327,7 @@
 				695F91121DF352EB00885440 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

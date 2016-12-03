@@ -8,8 +8,15 @@
 
 import UIKit
 
+fileprivate struct ViewModel {
+    let name: String
+    let indicator: UITableViewCellAccessoryType
+    let action: () -> Void
+}
+
 class SettingsViewController: UIViewController {
 
+    fileprivate var viewModel: [[ViewModel]] = []
     fileprivate let tableView = UITableView(frame: .zero, style: .grouped)
     fileprivate let cellIdentifier = String(describing: UITableViewCell.self)
 
@@ -19,6 +26,7 @@ class SettingsViewController: UIViewController {
         title = .Settings
         setupTableView()
         setupConstraints()
+        setupViewModel()
         tableView.reloadData()
     }
 
@@ -37,50 +45,44 @@ class SettingsViewController: UIViewController {
        let constraints = NSLayoutConstraint.filledInSuperview(tableView)
         NSLayoutConstraint.activate(constraints)
     }
+
+    private func setupViewModel() {
+        viewModel = [
+            [ViewModel(name: .SetOption1, indicator: .disclosureIndicator,
+                       action: { [unowned self] in self.push(SetOption1ViewController()) })],
+            [ViewModel(name: .SetOption2, indicator: .disclosureIndicator,
+                       action: { [unowned self] in self.push(SetOption2ViewController()) })],
+            [ViewModel(name: .SetOption3, indicator: .disclosureIndicator,
+                       action: { [unowned self] in self.push(SetOption3ViewController()) })],
+            [ViewModel(name: .SetOption4, indicator: .disclosureIndicator,
+                       action: { [unowned self] in self.push(SetOption4ViewController()) })],
+            [ViewModel(name: .Logout, indicator: .none,
+                       action: { [unowned self] in self.showLogoutPrompt() }),
+             ViewModel(name: .LogoutAndResetData, indicator: .none,
+                       action: { [unowned self] in self.showLogoutAndResetDataPrompt() }),
+             ViewModel(name: .LogoutAndRemoveAccount, indicator: .none,
+                       action: { [unowned self] in self.showLogoutAndRemoveAccountPrompt() })],
+        ]
+
+    }
 }
 
 extension SettingsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return viewModel.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0...3:
-            return 1
-        case 4:
-            return 3
-        default:
-            fatalError("Wrong number of sections")
-        }
+        return viewModel[safe: section]?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         let section = indexPath.section
         let row = indexPath.row
-        switch (section, row) {
-        case (0, 0):
-            cell.textLabel?.text = .SetOption1
-            cell.accessoryType = .disclosureIndicator
-        case (1, 0):
-            cell.textLabel?.text = .SetOption2
-            cell.accessoryType = .disclosureIndicator
-        case (2, 0):
-            cell.textLabel?.text = .SetOption3
-            cell.accessoryType = .disclosureIndicator
-        case (3, 0):
-            cell.textLabel?.text = .SetOption4
-            cell.accessoryType = .disclosureIndicator
-        case (4, 0):
-            cell.textLabel?.text = .Logout
-        case (4, 1):
-            cell.textLabel?.text = .LogoutAndResetData
-        case (4, 2):
-            cell.textLabel?.text = .LogoutAndRemoveAccount
-        default:
-            fatalError("Wrong number of sections")
-        }
+        guard let model = viewModel[safe: section]?[safe: row] else { return cell }
+        cell.textLabel?.text = model.name
+        cell.accessoryType = model.indicator
         return cell
     }
 
@@ -91,28 +93,15 @@ extension SettingsViewController: UITableViewDelegate {
         defer { tableView.deselectRow(at: indexPath, animated: true) }
         let section = indexPath.section
         let row = indexPath.row
-        switch (section, row) {
-        case (0, 0):
-            navigationController?.pushViewController(SetOption1ViewController(), animated: true)
-        case (1, 0):
-            navigationController?.pushViewController(SetOption2ViewController(), animated: true)
-        case (2, 0):
-            navigationController?.pushViewController(SetOption3ViewController(), animated: true)
-        case (3, 0):
-            navigationController?.pushViewController(SetOption4ViewController(), animated: true)
-        case (4, 0):
-            showLogoutPrompt()
-        case (4, 1):
-            showLogoutAndResetDataPrompt()
-        case (4, 2):
-            showLogoutAndRemoveAccountPrompt()
-        default:
-            fatalError("Wrong number of sections")
-        }
+        guard let model = viewModel[safe: section]?[safe: row] else { return }
+        model.action()
     }
 }
 
 extension SettingsViewController {
+    fileprivate func push(_ viewController: UIViewController) {
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 
     fileprivate func showLogoutPrompt() {
         showAlert(with: .Logout,
