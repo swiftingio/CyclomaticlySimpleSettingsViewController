@@ -1,4 +1,4 @@
-# CyclomaticlyComplexSettingsViewController
+# Cyclomaticly Complex Settings View Controller
 
 This version of the project is a companion material for [swifting.io](swifting.io)  blog post. It is meant to show problem with cyclomatic complexity.
 
